@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+ var a;
+  window.onload = function () 
+  {
+ var HttpClient = function() {
+ this.get = function(aUrl, aCallback) {
+ var anHttpRequest = new XMLHttpRequest();
+ anHttpRequest.onreadystatechange = function() { 
+ if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+ aCallback(anHttpRequest.responseText);
+ }
+ anHttpRequest.open( "GET", aUrl, true ); 
+ anHttpRequest.send( null ); 
+ }
+ }
+ var theurl="http://localhost:8080/charts";
+ var client = new HttpClient();
+ client.get(theurl, function(response) {
+	  a = JSON.parse(response);
+    var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Analysis of Journey"
+	},
+	axisY: {
+		title: "Count(Numbers)"
+	},
+        axisX: {
+		title: "Services"
+	},
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		dataPoints: [      
+			{ y: a[0],     label: "HomeServices" },
+			{ y: a[1],     label: "Payments"},
+			{ y: a[2],     label: "SmartMeter" },
+			{ y: a[3],     label: "Installation" }
+		]
+	}]
+});
+chart.render();
+});
+}
+ // });
+</script>
+</head>
+<body>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
