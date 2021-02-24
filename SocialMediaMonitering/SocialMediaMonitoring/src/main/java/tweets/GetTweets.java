@@ -18,14 +18,13 @@ public class GetTweets
 	   {
 		   ConfigurationBuilder cb = new ConfigurationBuilder();
 		   cb.setDebugEnabled(true)
-		   .setOAuthConsumerKey("wadldYLHBG8UsJZLpa31Uw")
-		   .setOAuthConsumerSecret("KOzAq53VF8bQ34OkRzDz3YhytnveQurpz4UCESgjddU6CN9")
-		   .setOAuthAccessToken("732546452187021312-3nmkB9Uzryqyl5RyKujyfNPJTF81")
-		   .setOAuthAccessTokenSecret("kIaqRlGdgypDm10DDQegbWYpvb7ZwL2CFSXlxr8OzX");
+		   .setOAuthConsumerKey("wa")
+		   .setOAuthAccessToken("732RyKujy")
+		   .setOAuthAccessTokenSecret("krzX");
 	 Twitter twitter = new TwitterFactory(cb.build()).getInstance();
 	 try 
 	 {
-	     Query query = new Query("@Muruges83731078");
+	     Query query = new Query("@Muruges");
 	     QueryResult result = twitter.search(query);
 	     return result.getTweets();
 	 } 
